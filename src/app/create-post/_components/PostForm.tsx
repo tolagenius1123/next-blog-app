@@ -85,7 +85,13 @@ export default function PostForm() {
 					</div>
 				)}
 			</div>
-			<CustomButton />
+			<CustomButton
+				btnType="submit"
+				btnStyles="w-full h-[40px] py-1 mt-4"
+				btnText="Add Post"
+				isLoadingText="Adding Post..."
+				btnColor="bg-zinc-950"
+			/>
 		</form>
 	);
 }

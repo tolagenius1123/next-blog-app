@@ -53,4 +53,24 @@ const addPost = async (
 	}
 };
 
-export { addPost };
+const deletePost = async (postId: string) => {
+	console.log(`Post with id of ${postId} was deleted`);
+	const result = await prisma.post.delete({
+		where: {
+			id: postId,
+		},
+	});
+	revalidatePath("/posts");
+	return result;
+};
+
+const getPostById = async (postId: string) => {
+	const post = await prisma.post.findUnique({
+		where: {
+			id: postId,
+		},
+	});
+	return post;
+};
+
+export { addPost, deletePost, getPostById };

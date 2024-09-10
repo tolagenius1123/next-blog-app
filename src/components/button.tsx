@@ -1,18 +1,35 @@
 "use client";
 import { useFormStatus } from "react-dom";
 
-export default function CustomButton() {
+type CustomButtonProps = {
+	btnType: "submit" | "reset" | "button" | undefined;
+	btnStyles: string;
+	btnText: string;
+	isLoadingText?: string;
+	btnColor: string;
+	action?: () => void;
+};
+
+export default function CustomButton({
+	btnType,
+	btnStyles,
+	btnText,
+	isLoadingText,
+	btnColor,
+	action,
+}: CustomButtonProps) {
 	const { pending } = useFormStatus();
 
 	return (
 		<button
-			type="submit"
+			type={btnType}
 			disabled={pending}
-			className={`text-sm font-semibold text-white h-[40px] ${
-				pending ? "bg-zinc-200" : "bg-zinc-950"
-			} rounded-md cursor-pointer hover:bg-zinc-800 w-full py-1 mt-4`}
+			className={`text-sm font-semibold text-white rounded-md cursor-pointer hover:bg-zinc-800 ${btnStyles} ${
+				pending ? "bg-zinc-200" : btnColor
+			}`}
+			onClick={action}
 		>
-			{pending ? "Adding Post..." : "Add Post"}
+			{pending ? isLoadingText : btnText}
 		</button>
 	);
 }
