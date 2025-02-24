@@ -4,6 +4,8 @@ import PostCard from "@/components/post-card";
 // export const dynamic = "force-dynamic"
 
 export default async function PostList() {
+
+
 	return (
 		<main className="px-5 md:px-10 h-[550px] md:h-[400px] text-center">
 			<h1 className="text-2xl font-semibold">Recent Posts</h1>
